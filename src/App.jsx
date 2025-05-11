@@ -12,6 +12,7 @@ import AboutPage from './about';
 import LoginPage from './pages/LoginPage';
 import { useShop } from './providers/shopProvider';
 import WebbShopp from './pages/webbshopp';
+import ContactPage from './contactPage';
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
             <Route path={`/${selectedShop.shopName}/home`} element={<Home/>}/>
             <Route path={`/${selectedShop.shopName}/shop`} element={<Shop/>}/>
             <Route path={`/${selectedShop.shopName}/about`} element={<AboutPage/>}/>
+            <Route path={`/${selectedShop.shopName}/contact`} element={<ContactPage/>}/>
             <Route path={`/${selectedShop.shopName}/product-details/:id`} element={<ProductDetailsPage/>}/>
             <Route path={`/${selectedShop.shopName}/cart`} element={<CartPage/>}/>
             <Route path="/login" element={<LoginPage/>}/>
@@ -48,6 +50,7 @@ function App() {
       </Router>
       :
       <Router>
+        <nav>Root</nav>
         <Routes>
            <Route path="/" element={<WebbShopp/>}/>
            <Route path="/login" element={<LoginPage/>}/>

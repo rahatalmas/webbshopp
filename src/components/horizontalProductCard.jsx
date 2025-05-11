@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import { useShop } from "../providers/shopProvider";
 
 const HorizontalProductCard = ({ product, onAddToCart }) => {
+
+   const {selectedShop} = useShop();
+
     return (
-       <Link to="/product-details/1">
+       <Link to={`/${selectedShop.shopName}/product-details/1`}>
               <div className="flex bg-white rounded-lg shadow-md overflow-hidden max-w-2xl w-full">
         {/* Image Section */}
         <div className="w-1/3">

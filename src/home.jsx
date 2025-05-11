@@ -97,7 +97,6 @@ function Home() {
             ))}
           </div>
           </section>
-          <ContactPage/>
       </div>
     </>
   );
