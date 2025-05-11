@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { FiMenu, FiSearch, FiUser } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom'; // Import NavLink
+import { useShop } from '../providers/shopProvider';
 
 const Navbar = ({ onNavbarHeightChange }) => {
+  const {selectedShop,exitShop} = useShop();
   const navbarRef = useRef(null); // Reference to the navbar
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSearchVisible, setIsSearchVisible] = useState(false);
@@ -26,14 +28,14 @@ const Navbar = ({ onNavbarHeightChange }) => {
     >
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         {/* Logo */}
-        <NavLink to="/" className="text-xl font-bold">webbshopp</NavLink>
+        <NavLink to="/" className="text-xl font-bold">{selectedShop.shopName}</NavLink>
 
         {/* Centered Navigation Links */}
         <div className="hidden md:flex space-x-6">
           {["Home", "Shop", "About", "Contact", "cart"].map(item => (
             <NavLink
               key={item}
-              to={`/${item.toLowerCase()}`} // Use `to` for routing
+              to={`/${selectedShop.shopName}/${item.toLowerCase()}`} // Use `to` for routing
               className="hover:text-gray-200"
               activeClassName="text-gray-200" // Optional: add custom active class
             >
@@ -44,7 +46,7 @@ const Navbar = ({ onNavbarHeightChange }) => {
 
         {/* Right Side: Search, Login/Profile */}
         <div className="flex items-center space-x-4">
-          <button onClick={toggleSearch} className="md:hidden">
+          {/* <button onClick={toggleSearch} className="md:hidden">
             <FiSearch size={20} />
           </button>
           {isSearchVisible && (
@@ -53,12 +55,19 @@ const Navbar = ({ onNavbarHeightChange }) => {
               placeholder="Search..."
               className="p-2 rounded bg-white text-black"
             />
-          )}
+          )} */}
+
           {isLoggedIn ? (
             <div className="w-8 h-8 rounded-full bg-gray-400">P</div> // Placeholder for profile avatar
           ) : (
-            <NavLink to="/login" className='bg-orange-500 px-5 py-1 rounded'>Login</NavLink>
+            <NavLink to="/login" className=" bg-green-700 hover:bg-green-800 text-white font-semibold px-4 py-1 rounded-lg shadow transition-all duration-200">Login</NavLink>
           )}
+          <button 
+            onClick={() => exitShop()}
+            className="bg-red-700 hover:bg-black text-white font-semibold px-4 py-1 rounded-lg shadow transition-all duration-200"
+          >
+            Exit Shop
+          </button>
           <button onClick={toggleMenu} className="md:hidden">
             <FiMenu size={20} />
           </button>
@@ -71,7 +80,7 @@ const Navbar = ({ onNavbarHeightChange }) => {
           {["Home", "Shop", "About", "Contact", "cart"].map(item => (
             <NavLink
               key={item}
-              to={`/${item.toLowerCase()}`}
+              to={`/${selectedShop.shopName}/${item.toLowerCase()}`}
               className="block py-2"
               activeClassName="text-gray-200"
             >
