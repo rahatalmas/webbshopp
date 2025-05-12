@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-
-const images = [
-  'https://wallpapercat.com/w/full/7/1/4/1198692-3840x2160-desktop-4k-studio-ghibli-background-photo.jpg',
-];
+import { useShop } from '../providers/shopProvider';
+import { storeMap } from './storedata';
 
 const BannerSlider = () => {
+  const {selectedShop} = useShop();
   const [current, setCurrent] = useState(0);
-
+  const images = selectedShop?[storeMap[`${selectedShop.shopName}`].shopBanner]:[
+    'https://wallpapercat.com/w/full/7/1/4/1198692-3840x2160-desktop-4k-studio-ghibli-background-photo.jpg',
+  ];
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);

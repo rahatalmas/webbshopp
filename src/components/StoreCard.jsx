@@ -1,10 +1,11 @@
 import React from 'react';
+import { useShop } from '../providers/shopProvider';
 
 const StoreCard = ({ store }) => {
   const { name, description, logo, rating = 0 } = store;
   const clampedRating = Math.min(Math.max(rating, 0), 5);
   const ratingPercentage = (clampedRating / 5) * 100;
-
+  const {selectShop} = useShop()
   return (
     <div
       className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col h-[400px] w-full "
@@ -41,7 +42,9 @@ const StoreCard = ({ store }) => {
           </div>
 
           {/* Button */}
-          <button className="mt-4 w-full px-4 py-2 bg-[var(--primary)] text-white rounded-md hover:bg-[var(--secondary)] transition duration-300">
+          <button className="mt-4 w-full px-4 py-2 bg-[var(--primary)] text-white rounded-md hover:bg-[var(--secondary)] transition duration-300"
+            onClick={()=>{selectShop({"shopName":name})}}
+          >
             View Shop
           </button>
         </div>

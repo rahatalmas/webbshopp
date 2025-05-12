@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { FiBox } from 'react-icons/fi';
 import SectionHeader from './components/sectionHeader';
 import HorizontalProductCard from './components/horizontalProductCard';
-
+import { storeMap } from './components/storedata';
+import { useShop } from './providers/shopProvider';
 const Shop = () => {
   const products = [
     {
@@ -50,29 +51,32 @@ const Shop = () => {
     // Add more items for pagination
     // ...
   ];
-
+  const {selectedShop} = useShop();
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
+  const itemsPerPage = 15;
 
   // Calculate the index of the first and last item on the current page
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
 
   // Get the current page's products
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = storeMap[selectedShop.shopName].products.slice(indexOfFirstProduct, indexOfLastProduct);
 
   // Handle page change
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // Calculate the total number of pages
-  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const totalPages = Math.ceil(storeMap[selectedShop.shopName].products.length / itemsPerPage);
 
   return (
     <section className="w-full p-6 bg-gray-50">
       {/* Banner Section */}
       <div
-        className="w-full min-h-[200px] bg-[url('https://wallpapercave.com/wp/wp2907942.png')] bg-cover bg-center bg-no-repeat text-white flex justify-center items-center mb-8 rounded-lg relative overflow-hidden"
+        className="w-full min-h-[200px] bg-cover bg-center bg-no-repeat text-white flex justify-center items-center mb-8 rounded-lg relative overflow-hidden"
+        style={{
+          backgroundImage: `url(${storeMap[selectedShop.shopName].shopPoster})`,
+        }}
       >
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-green-700 opacity-60 rounded"></div>

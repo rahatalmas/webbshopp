@@ -5,9 +5,12 @@ import SectionHeader from './components/sectionHeader';
 import ProductCarousel from './components/productCarusal';
 import HorizontalProductCard from './components/horizontalProductCard';
 import ContactPage from './contactPage';
-
+import { useShop } from './providers/shopProvider';
+import { storeMap } from './components/storedata';
 
 function Home() {
+
+  const {selectedShop} = useShop();
   const products = [
     {
       id: 1,
@@ -76,7 +79,7 @@ function Home() {
                     linkHref="/products"
             />
           </section>
-          <ProductCarousel products={products}/>
+          <ProductCarousel products={storeMap[`${selectedShop.shopName}`].products.slice(0,9)}/>
 
           {/* all products */}
           <section className="w-full p-6 mt-4 bg-gray-50">
@@ -88,7 +91,7 @@ function Home() {
             />
           {/* Grid Layout: 1 column on mobile, 2 on large screens */}
           <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-            {products.slice(0,4).map((product) => (
+            {storeMap[`${selectedShop.shopName}`].products.slice(0,3).map((product) => (
               <HorizontalProductCard
                 key={product.id}
                 product={product}
