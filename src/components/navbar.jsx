@@ -24,7 +24,7 @@ const Navbar = ({ onNavbarHeightChange }) => {
   return (
     <nav
       ref={navbarRef}
-      className="bg-[#7C9070] text-white px-6 py-4 fixed top-0 left-0 right-0 z-50"
+      className="bg-[var(--primary)] text-white px-6 py-4 fixed top-0 left-0 right-0 z-50"
     >
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         {/* Logo */}

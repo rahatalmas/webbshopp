@@ -14,10 +14,10 @@ const ProductCard = ({ product, onAddToCart }) => {
         <h2 className="text-lg font-semibold text-gray-800">{product.name}</h2>
         <p className="text-gray-600 mt-2 text-sm">{product.description}</p>
         <div className="mt-4 flex items-center justify-between">
-          <span className="text-xl font-bold text-green-600">${product.price}</span>
+          <span className="text-xl font-bold text-[var(--primary)]">${product.price}</span>
           <button
             onClick={() => onAddToCart(product)}
-            className="bg-[#F97B22] text-white px-4 py-2 rounded hover:bg-[#9CA777] transition-colors"
+            className="bg-[var(--primary)] text-white px-4 py-2 rounded hover:bg-[var(--secondary)] transition-colors"
           >
             Add to Cart
           </button>

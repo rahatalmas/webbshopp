@@ -15,7 +15,7 @@ const BannerSlider = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[300px] md:h-[500px] overflow-hidden">
+    <div className="relative w-full h-[350px] md:h-[350px] overflow-hidden">
       {images.map((img, index) => (
         <img
           key={index}

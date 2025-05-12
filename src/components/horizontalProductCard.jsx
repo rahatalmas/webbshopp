@@ -7,7 +7,7 @@ const HorizontalProductCard = ({ product, onAddToCart }) => {
 
     return (
        <Link to={`/${selectedShop.shopName}/product-details/1`}>
-              <div className="flex bg-white rounded-lg shadow-md overflow-hidden max-w-2xl w-full">
+        <div className="flex bg-white rounded-lg shadow-md overflow-hidden max-w-2xl w-full">
         {/* Image Section */}
         <div className="w-1/3">
           <img
@@ -24,10 +24,10 @@ const HorizontalProductCard = ({ product, onAddToCart }) => {
             <p className="text-sm text-gray-600 mt-1">{product.description}</p>
           </div>
           <div className="mt-4 flex justify-between items-center">
-            <span className="text-blue-600 font-bold text-lg">${product.price}</span>
+            <span className="text-[var(--primary)] font-bold text-lg">${product.price}</span>
             <button
               onClick={() => onAddToCart(product)}
-              className="bg-[#F97B22] hover:bg-green-500 text-white text-sm px-4 py-2 rounded"
+              className="bg-[var(--primary)] hover:bg-[var(--secondary)] text-white text-sm px-4 py-2 rounded"
             >
               Add to Cart
             </button>

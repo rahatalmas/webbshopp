@@ -33,7 +33,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="flex items-center justify-center bg-gray-100 p-8">
       <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
         {/* Left Image */}
         <div className="hidden md:block w-1/2 bg-gray-200">

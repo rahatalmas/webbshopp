@@ -1,6 +1,6 @@
 const SiteMap = () => {
     return (
-      <section className="bg-[#7C9070] py-10 px-6 md:px-12 lg:px-20">
+      <section className="bg-[var(--primary)] py-10 px-6 md:px-12 lg:px-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {/* Column 1 */}

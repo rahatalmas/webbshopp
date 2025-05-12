@@ -13,6 +13,8 @@ import LoginPage from './pages/LoginPage';
 import { useShop } from './providers/shopProvider';
 import WebbShopp from './pages/webbshopp';
 import ContactPage from './contactPage';
+import WebbNav from './components/WebbNav';
+import StoreGrid from './components/StoreList';
 
 function App() {
 
@@ -22,10 +24,15 @@ function App() {
   };
 
   const [navbarHeight, setNavbarHeight] = useState(0); // State to store navbar height
+  const [navbarHeightWebb, setNavbarHeightWebb] = useState(0); 
 
   // Function to update navbar height from Navbar component
   const handleNavbarHeightChange = (height) => {
     setNavbarHeight(height);
+  };
+
+  const handleWebbNavbarHeightChange = (height) => {
+    setNavbarHeightWebb(height);
   };
   return (
     <>
@@ -50,11 +57,15 @@ function App() {
       </Router>
       :
       <Router>
-        <nav>Root</nav>
+        <WebbNav onWebbNavHeightChange={handleWebbNavbarHeightChange}/>
+        <section style={{ marginTop: `${navbarHeightWebb}px`}}></section>          
+
         <Routes>
            <Route path="/" element={<WebbShopp/>}/>
+           <Route path="/stores" element={<StoreGrid/>}/>
            <Route path="/login" element={<LoginPage/>}/>
         </Routes>
+        <SiteMap/>
       </Router>
     }
     </>
